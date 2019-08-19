@@ -19,6 +19,9 @@
         "type": "git",
         "url": "git@github.com:khrome/bit-mask.git"
     },
+    "scripts": {
+        "test": "mocha"
+    },
     "dependencies": {
         "array-events": "^0.2.0"
     },
