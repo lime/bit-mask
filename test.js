@@ -4,6 +4,36 @@ var BitMask = require('./bit-mask');
 var OwnershipMask = BitMask.OwnershipMask;
 
 describe('BitMask', function(){
+    describe('.getBit()', function(){
+      it('reads bits set on initialization', function(){
+        var mask = new BitMask('01111010', 2);
+        mask.getBit(0).should.equal(false, 'bit 0');
+        mask.getBit(1).should.equal(true, 'bit 0');
+        mask.getBit(2).should.equal(false, 'bit 2');
+        mask.getBit(3).should.equal(true, 'bit 3');
+        mask.getBit(4).should.equal(true, 'bit 4');
+        mask.getBit(5).should.equal(true, 'bit 5');
+        mask.getBit(6).should.equal(true, 'bit 6');
+        mask.getBit(7).should.equal(false, 'bit 7');
+
+        for(var n=8; n < 31; n++){
+          mask.getBit(n).should.equal(false, 'bit ' + n);
+        }
+      });
+
+      it('reads bits set by setBit()', function(){
+        var mask = new BitMask('0');
+
+        mask.setBit(14, true);
+        mask.getBit(14).should.equal(true, 'bit 14 should be set');
+
+        mask.setBit(3, true);
+        mask.getBit(3).should.equal(true, 'bit 3 should be set');
+        mask.setBit(3, false);
+        mask.getBit(3).should.equal(false, 'bit 3 should be unset');
+      });
+    });
+
     describe('> OwnershipMask', function(){
         var mask;
         
