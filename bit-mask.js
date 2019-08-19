@@ -16,7 +16,7 @@ BitMask.prototype.setBit = function(position, value){
     }
 };
 BitMask.prototype.getBit = function(position){
-    return !!((1 << (this.base-position) ) & this.value);
+    return !!((1 << position) & this.value);
 }
 BitMask.prototype.bits = function(){
     return this.value.toString(2);
@@ -88,8 +88,8 @@ OwnershipMask.prototype.modify = function(clause){
         }
     }
 }
-OwnershipMask.prototype.contexts = ['user', 'group', 'world'];
-OwnershipMask.prototype.permissions = ['read', 'write', 'execute'];
+OwnershipMask.prototype.contexts = ['user', 'group', 'world'].reverse();
+OwnershipMask.prototype.permissions = ['read', 'write', 'execute'].reverse();
 OwnershipMask.prototype.setBit = BitMask.prototype.setBit;
 OwnershipMask.prototype.getBit = BitMask.prototype.getBit;
 OwnershipMask.prototype.bits = BitMask.prototype.bits;
